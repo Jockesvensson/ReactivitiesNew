@@ -30,12 +30,12 @@ namespace Application.User
 
             public async Task<User> Handle(Query request, CancellationToken cancellationToken)
             {
-                var user = await _userManager.FindByNameAsync(_userAccessor.GetCurrentUserName());
+                var user = await _userManager.FindByNameAsync(_userAccessor.GetCurrentUsername());
 
                 return new User
                 {
                     DisplayName = user.DisplayName,
-                    UserName = user.UserName,
+                    Username = user.UserName,
                     Token = _jwtGenerator.CreateToken(user),
                     Image = null
                 };
